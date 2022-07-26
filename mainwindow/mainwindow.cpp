@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "sql/windows/sequencewindowsql.h"
+#include "sql/windows/tableswindoweditor.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent, int userType) :
 
 MainWindow::~MainWindow() {
     delete ui;
+    delete sqlSequence_;
 }
 
 // Main section
@@ -105,11 +106,11 @@ void MainWindow::updateSequenceLists(const SequenceList sequences) {
 void MainWindow::searchInSequence(const QString text) {
     clearTableWidgetSequence();
 
-    for(int i = 0; i < seqList_.sequences.size(); i++) {
-        if(seqList_.sequences[i].contains(text)){
+    for(int i = 0; i < seqList_.name.size(); i++) {
+        if(seqList_.name[i].contains(text)){
             ui->tableWidgetSequence->insertRow(ui->tableWidgetSequence->rowCount());
             ui->tableWidgetSequence->setItem(ui->tableWidgetSequence->rowCount()-1, 0, new QTableWidgetItem(seqList_.id[i]));
-            ui->tableWidgetSequence->setItem(ui->tableWidgetSequence->rowCount()-1, 1, new QTableWidgetItem(seqList_.sequences[i]));
+            ui->tableWidgetSequence->setItem(ui->tableWidgetSequence->rowCount()-1, 1, new QTableWidgetItem(seqList_.name[i]));
         }
     }
     currentSequence.first = -1;
@@ -146,12 +147,12 @@ void MainWindow::prepareSequenceWindowEditor(bool newRecord) {
 }
 
 void MainWindow::showSequenceEditorWindow(bool newRecord) {
-    SequenceWindowSQL *sequenceWindow;
-    sequenceWindow = new SequenceWindowSQL(nullptr, newRecord, currentSequence.first, currentSequence.second);
-    connect(sequenceWindow, &SequenceWindowSQL::sendError, this, &MainWindow::showMessageBoxWarning);
-    connect(sequenceWindow, &SequenceWindowSQL::windowClosed, this, &MainWindow::getAllSequence);
-    connect(sequenceWindow, &SequenceWindowSQL::windowClosed, sequenceWindow, &SequenceWindowSQL::deleteLater);
-    sequenceWindow->show();
+    TablesWindowEditor *tableWindow;
+    tableWindow = new TablesWindowEditor(nullptr, 1, newRecord, currentSequence.first, currentSequence.second);
+    connect(tableWindow, &TablesWindowEditor::sendError, this, &MainWindow::showMessageBoxWarning);
+    connect(tableWindow, &TablesWindowEditor::windowClosed, this, &MainWindow::getAllSequence);
+    connect(tableWindow, &TablesWindowEditor::windowClosed, tableWindow, &TablesWindowEditor::deleteLater);
+    tableWindow->show();
 }
 
 
