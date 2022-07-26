@@ -12,21 +12,27 @@ SOURCES += \
     main.cpp \
     logscreen.cpp \
     mainwindow/mainwindow.cpp \
-    sql/windows/sequencewindowsql.cpp \
-    sql/sequencetablesql.cpp
+    sql/scenariotablesql.cpp \
+    sql/sequencetablesql.cpp \
+    sql/testcasetablesql.cpp \
+    sql/windows/tableswindoweditor.cpp
 
 HEADERS += \
     configuration\connectionconfiguration.h \
     logscreen.h \
     mainwindow/mainwindow.h \
-    sql/windows/sequencewindowsql.h \
+    sql/scenarioslist.h \
+    sql/scenariotablesql.h \
     sql/sequencelist.h \
-    sql/sequencetablesql.h
+    sql/sequencetablesql.h \
+    sql/testcaseList.h \
+    sql/testcasetablesql.h \
+    sql/windows/tableswindoweditor.h
 
 FORMS += \
     logscreen.ui \
     mainwindow/mainwindow.ui \
-    sql/windows/sequencewindowsql.ui
+    sql/windows/tableswindoweditor.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
