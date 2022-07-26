@@ -20,8 +20,9 @@ public:
 
 private:
     Ui::SequenceWindowSQL *ui;
-    SequenceTableSql sqlSequence_;
+    SequenceTableSql *sqlSequence_;
     bool newRecord_{true};
+    int index_{0};
 
     void execSqlCommand();
 
@@ -29,7 +30,7 @@ private:
 
 signals:
     void windowClosed();
-    void confirmed();
+    void sendError(QString);
 };
 
 #endif // SEQUENCEWINDOWSQL_H
