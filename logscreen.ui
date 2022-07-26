@@ -142,7 +142,7 @@
    <item row="5" column="2">
     <widget class="QLabel" name="labelVersion">
      <property name="text">
-      <string>Ver 0.001</string>
+      <string>Ver 0.002</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
