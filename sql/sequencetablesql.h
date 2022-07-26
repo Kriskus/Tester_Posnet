@@ -24,6 +24,7 @@ public slots:
 
 signals:
     void sendSequences(SequenceList);
+    void sendError(QString);
 };
 
 #endif // SEQUENCETABLESQL_H
