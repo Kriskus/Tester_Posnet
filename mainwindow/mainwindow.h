@@ -20,22 +20,61 @@ public:
     ~MainWindow();
 
 private slots:
+    // Main section
     void closeEvent(QCloseEvent *event);
-    void updateSequenceLists(const SequenceList sequences);
     void showMessageBoxInformation(const QString information);
     void showMessageBoxWarning(const QString warning);
     QMessageBox::StandardButton showMessageBoxQuestion(const QString question);
+    void getAllSequence();
+
+    // Sequence section
+    void updateSequenceLists(const SequenceList sequences);
+    void searchInSequence(const QString text);
+    void clearTableWidgetSequence();
+    void removeSequenceFromDatabase();
+
+    // Scenario section
+
+
+    // Test case section
+
+
+    // Action section
+
+
+    // Report section
+
+
+    // Configuration
+
 
 private:
     Ui::MainWindow *ui;
     SequenceTableSql *sqlSequence_;
     SequenceList seqList_;
 
+    std::pair<int, QString> currentSequence{-1, ""};
+
+    // Main section
     void prepareWindow(int userType);
 
+    // Sequence section
     void prepareSequenceWindowEditor(bool newRecord);
-    void showSequenceEditorWindow(int index, const QString sequence);
-    void removeSequenceFromDatabase();
+    void showSequenceEditorWindow(bool newRecord);
+
+    // Scenario section
+
+
+    // Test case section
+
+
+    // Action section
+
+
+    // Report section
+
+
+    // Configuration
 
 signals:
     void refreshSequenceList();
