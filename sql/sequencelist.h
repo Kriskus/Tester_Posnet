@@ -7,11 +7,11 @@
 struct SequenceList
 {
     QStringList id{};
-    QStringList sequences{};
+    QStringList name{};
 
-    void clearSequenceLists() {
-        sequences.clear();
+    void clearList() {
         id.clear();
+        name.clear();
     }
 };
 
