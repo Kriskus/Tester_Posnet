@@ -10,13 +10,13 @@ SequenceTableSql::SequenceTableSql(QObject *parent)
 }
 
 void SequenceTableSql::getAllRecord() {
-    seq.clearSequenceLists();
+    sequenceList.clearList();
     query.exec("SELECT * FROM `Tester_db`.Sekwencje ORDER by sekwencja ASC;");
     while(query.next()) {
-        seq.id.append(query.value(0).toString());
-        seq.sequences.append(query.value(1).toString());
+        sequenceList.id.append(query.value(0).toString());
+        sequenceList.name.append(query.value(1).toString());
     }
-    emit sendSequences(seq);
+    emit sendSequences(sequenceList);
 }
 
 void SequenceTableSql::insertNewRecord(const QString sequence) {

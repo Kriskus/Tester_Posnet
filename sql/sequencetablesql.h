@@ -14,7 +14,7 @@ public:
 
 private:
     QSqlQuery query{};
-    SequenceList seq;
+    SequenceList sequenceList;
 
 public slots:
     void getAllRecord();
